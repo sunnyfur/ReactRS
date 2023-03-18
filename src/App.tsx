@@ -1,10 +1,11 @@
 import React from 'react';
 import './App.css';
-import CardList from './pages/cardList/CardList';
+import CardList from './components/cards/CardList';
 import Header from './components/header/Header';
 import { Routes, Route } from 'react-router-dom';
 import AboutPage from './pages/aboutPage/AboutPage';
 import NotFound from './pages/notFound/NotFound';
+import MainPage from './pages/mainPage/MainPage';
 
 class App extends React.Component {
   render() {
@@ -13,7 +14,7 @@ class App extends React.Component {
         <Header />
         <main>
           <Routes>
-            <Route path="/" element={<CardList />} />
+            <Route path="/" element={<MainPage />} />
             <Route path="/about" element={<AboutPage />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
