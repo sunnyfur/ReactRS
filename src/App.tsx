@@ -18,7 +18,6 @@ class App extends React.Component {
             <Route path="/about" element={<AboutPage />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
-          <CardList />
         </main>
       </div>
     );
