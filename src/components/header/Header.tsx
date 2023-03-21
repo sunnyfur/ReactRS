@@ -1,11 +1,9 @@
 import React from 'react';
-import { Link, NavLink } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import { withRouter, WithRouterProps } from '../withRouter/withRouter';
 
 import styles from './header.module.scss';
-interface Props extends WithRouterProps {}
-
-class Header extends React.Component<Props> {
+class Header extends React.Component<WithRouterProps> {
   render() {
     let namePage;
     switch (this.props.location.pathname) {

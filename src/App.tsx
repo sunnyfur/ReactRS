@@ -1,6 +1,5 @@
 import React from 'react';
 import './App.scss';
-import CardList from './components/cards/CardList';
 import Header from './components/header/Header';
 import { Routes, Route } from 'react-router-dom';
 import AboutPage from './pages/aboutPage/AboutPage';

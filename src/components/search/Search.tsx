@@ -1,6 +1,8 @@
 import React from 'react';
 import styles from './search.module.scss';
-interface Props {}
+interface Props {
+  children?: React.ReactNode;
+}
 interface State {
   searchText: string;
 }
