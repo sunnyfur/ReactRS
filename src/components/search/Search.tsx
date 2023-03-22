@@ -16,7 +16,8 @@ class Search extends React.Component<Props, State> {
   }
 
   componentDidMount(): void {
-    this.setState({ searchText: localStorage.getItem('searchString') || '' });
+    const searchString = localStorage.getItem('searchString');
+    if (searchString) this.setState({ searchText: searchString });
   }
   componentWillUnmount(): void {
     localStorage.setItem('searchString', this.state.searchText);
