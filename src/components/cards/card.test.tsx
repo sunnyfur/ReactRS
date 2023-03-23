@@ -20,7 +20,7 @@ describe('Card', () => {
     expect(screen.getByRole('img')).toBeInTheDocument();
   });
   it('render card list component', () => {
-    render(<CardList />);
-    expect(screen.getAllByRole('button').length).toBe(8);
+    render(<CardList cards={[sampleCard]} />);
+    expect(screen.getAllByRole('button').length).toBe(1);
   });
 });

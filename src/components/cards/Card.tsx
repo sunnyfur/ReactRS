@@ -1,16 +1,7 @@
 import React from 'react';
+import { CardType } from '../../types/types';
 import styles from './card.module.scss';
 
-type CardType = {
-  id: number;
-  category: string;
-  author: string;
-  cost: string;
-  costUSD: string;
-  name: string;
-  likesCount: number;
-  img: string;
-};
 interface Props {
   card: CardType;
 }

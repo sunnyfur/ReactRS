@@ -13,6 +13,9 @@ class Header extends React.Component<WithRouterProps> {
       case '/about':
         namePage = 'About page';
         break;
+      case '/form':
+        namePage = 'Form page';
+        break;
       default:
         namePage = '404 Page';
     }
@@ -36,6 +39,14 @@ class Header extends React.Component<WithRouterProps> {
             }
           >
             About
+          </NavLink>
+          <NavLink
+            to="/form"
+            className={({ isActive, isPending }) =>
+              isPending ? styles.active : isActive ? styles.active : styles.pending
+            }
+          >
+            Form
           </NavLink>
         </nav>
       </header>

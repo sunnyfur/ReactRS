@@ -1,13 +1,17 @@
 import React from 'react';
 import Card from './Card';
-import cards from '../../mock/data.json';
 import styles from './cardList.module.scss';
+import { CardType } from '../../types/types';
 
-class CardList extends React.Component {
+interface Props {
+  cards: CardType[];
+}
+
+class CardList extends React.Component<Props> {
   render() {
     return (
       <div className={styles.wrapper}>
-        {cards.map((card) => (
+        {this.props.cards.map((card) => (
           <Card key={card.id} card={card} />
         ))}
       </div>
