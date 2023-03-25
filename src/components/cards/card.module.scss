@@ -1,5 +1,6 @@
 @import '../../assets/styles/colors';
 @import '../../assets/styles/vars';
+@import '../../assets/styles/mixin';
 
 .card {
   flex: 0 0 20%;
@@ -37,23 +38,7 @@
 
 .but {
   grid-area: but;
-  cursor: pointer;
-  min-height: 2rem;
-  background: $card_color;
-  color: $text_color;
-  font: inherit;
-  border-radius: 8px;
-  border: 1px solid $border_color;
-  cursor: pointer;
-  transition: 0.5s;
-  &:hover {
-    background: $gr_color;
-    border: none;
-  }
-  &:active {
-    background: $card_color;
-    border: 1px solid $border_color;
-  }
+  @include button;
 }
 
 .author {
