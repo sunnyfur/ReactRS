@@ -1,0 +1,20 @@
+@import '../../assets/styles/vars';
+
+.wrapper {
+  gap: 2rem;
+
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  @media screen and (max-width: $desktop) {
+    grid-template-columns: repeat(4, 1fr);
+  }
+  @media screen and (max-width: $tablet) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  @media screen and (max-width: $mobile) {
+    grid-template-columns: 1fr;
+  }
+  @media screen and (max-width: $small-mobile) {
+    grid-template-columns: 1fr;
+  }
+}

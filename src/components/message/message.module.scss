@@ -1,0 +1,27 @@
+@import '../../assets/styles/colors';
+@import '../../assets/styles/vars';
+@import '../../assets/styles/mixin';
+
+.message {
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  background: rgba(0, 0, 0, 0.5);
+  position: fixed;
+  display: flex;
+}
+
+.messageContent {
+  margin: auto;
+  padding: 1rem;
+  color: $text_color;
+  min-width: 20rem;
+  max-width: 40rem;
+  background-color: $card_color;
+  border-radius: $border-radius-lg;
+}
+
+.but {
+  @include button;
+}

@@ -1,0 +1,82 @@
+[
+  {
+    "id": 1,
+    "category": "art",
+    "author": "@sanya",
+    "cost": "420",
+    "costUSD": "20.35",
+    "name": "title 3D",
+    "likesCount": 24,
+    "img": "https://static.jigsawpuzzles.io/images/2165-1024x576.jpg"
+  },
+  {
+    "id": 2,
+    "category": "art",
+    "author": "@sanya",
+    "cost": "420",
+    "costUSD": "20.35",
+    "name": "title 3D",
+    "likesCount": 24,
+    "img": "https://avatars.mds.yandex.net/i?id=4491727cac3397418cd15580619729cb-5289247-images-thumbs&n=13&exp=1"
+  },
+  {
+    "id": 3,
+    "category": "art",
+    "author": "@sanya",
+    "cost": "420",
+    "costUSD": "20.35",
+    "name": "title 3D",
+    "likesCount": 24,
+    "img": "https://i.comentr.com/Vk9onmKbdOxpuKZL8w92I3BupxI_tal.jpg"
+  },
+  {
+    "id": 4,
+    "category": "art",
+    "author": "@sanya",
+    "cost": "420",
+    "costUSD": "20.35",
+    "name": "title 3D",
+    "likesCount": 24,
+    "img": "https://lldikti13.kemdikbud.go.id/wp-content/uploads/2022/01/Gambar-01-03-Jan-2022-1024x576.jpg"
+  },
+  {
+    "id": 5,
+    "category": "art",
+    "author": "@sanya",
+    "cost": "420",
+    "costUSD": "20.35",
+    "name": "title 3D",
+    "likesCount": 24,
+    "img": "http://newsforward.ru/wp-content/uploads/2022/02/shubham-dhage-IxXMnE7PjAQ-unsplash-1536x864.jpg"
+  },
+  {
+    "id": 6,
+    "category": "art",
+    "author": "@someAuthor",
+    "cost": "420",
+    "costUSD": "20.35",
+    "name": "amazing Art",
+    "likesCount": 24,
+    "img": "https://ip1.anime-pictures.net/direct-images/e9d/e9d1bbef73ac5ab7db895b494cd2a99f.jpg?if=ANIME-PICTURES.NET_-_443032-1920x975-original-zudarts+lee-single-highres-wide+image-signed.jpg"
+  },
+  {
+    "id": 7,
+    "category": "art",
+    "author": "@sanya",
+    "cost": "420",
+    "costUSD": "20.35",
+    "name": "title 3D",
+    "likesCount": 24,
+    "img": "https://i.pinimg.com/originals/bd/3d/41/bd3d41f78b57f5e262007054d891f5e1.jpg"
+  },
+  {
+    "id": 8,
+    "category": "art",
+    "author": "@sanya",
+    "cost": "420",
+    "costUSD": "20.35",
+    "name": "title 3D",
+    "likesCount": 24,
+    "img": "https://digitalmediawire.com/wp-content/uploads/2022/02/shubham-dhage-UxDU0Gg5pqQ-unsplash-1536x864.jpg"
+  }
+]
