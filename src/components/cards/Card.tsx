@@ -9,6 +9,7 @@ class Card extends React.Component<Props> {
   render() {
     return (
       <div className={styles.card}>
+        <p>{this.props.card.date}</p>
         <img className={styles.img} alt={this.props.card.name} src={this.props.card.img} />
         <p className={styles.category}>{this.props.card.category} </p>
         <p className={styles.name}>{this.props.card.name} </p>
@@ -19,7 +20,7 @@ class Card extends React.Component<Props> {
         </p>
 
         <button type="button" className={styles.but}>
-          Live now{' '}
+          Live now
         </button>
       </div>
     );

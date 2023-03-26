@@ -24,10 +24,13 @@ class FormPage extends React.Component<Props, State> {
       isShowMessage: false,
     };
   }
-  handleSubmit(event: React.FormEvent<HTMLFormElement>) {
-    event.preventDefault();
-    this.setState({ isShowMessage: true });
+  handleSubmit(card: CardType) {
+    this.setState((prevState: State) => ({
+      cards: [...prevState.cards, card],
+      isShowMessage: true,
+    }));
     this.formRef.current!.reset();
+
     setTimeout(() => {
       this.setState({ isShowMessage: false });
     }, 3000);

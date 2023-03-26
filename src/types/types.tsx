@@ -1,10 +1,11 @@
 export type CardType = {
   id: number;
   category: string;
-  author: string;
+  author?: string;
   cost: string;
   costUSD: string;
   name: string;
-  likesCount: number;
+  likesCount?: number;
   img: string;
+  date?: string;
 };
