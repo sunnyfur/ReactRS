@@ -1,7 +1,8 @@
 @import '../../assets/styles/colors';
+@import '../../assets/styles/vars';
 @import '../../assets/styles/mixin';
 .form {
-  border-radius: 5px;
+  border-radius: $border-radius-lg;
   display: flex;
   flex-direction: column;
   gap: 1rem;
@@ -13,4 +14,28 @@
 }
 .but {
   @include button;
+}
+.input,
+.select {
+  border-radius: $border-radius-sm;
+  border: $border_color 1px solid;
+  background-color: $card_color;
+  color: $text_color;
+  padding: 0.5rem;
+}
+.error {
+  margin: 0.05rem;
+  color: $acent_color;
+}
+
+.label {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+.input_file {
+  margin-left: 0.5rem;
+  &::file-selector-button {
+    display: none;
+  }
 }

@@ -3,7 +3,7 @@ import CardList from '../../components/cards/CardList';
 import Form from '../../components/form/Form';
 import Message from '../../components/message/Message';
 import { CardType } from '../../types/types';
-
+import styles from './formPage.module.scss';
 interface Props {
   children?: React.ReactNode;
 }
@@ -40,7 +40,7 @@ class FormPage extends React.Component<Props, State> {
   }
   render() {
     return (
-      <>
+      <section className={styles.wrapper}>
         <Form refForm={this.formRef} onSubmit={this.handleSubmit} />
         <CardList cards={this.state.cards} />
 
@@ -49,7 +49,7 @@ class FormPage extends React.Component<Props, State> {
             <p>The data is added</p>
           </Message>
         )}
-      </>
+      </section>
     );
   }
 }
