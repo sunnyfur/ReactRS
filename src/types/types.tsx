@@ -9,3 +9,13 @@ export type CardType = {
   img: string;
   date?: string;
 };
+
+export type ErrorsCard = {
+  name?: string;
+  category?: string;
+  cost?: string;
+  img?: string;
+  date?: string;
+  agree?: string;
+  curr?: string;
+};
