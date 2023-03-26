@@ -130,7 +130,7 @@ class Form extends React.Component<Props, State> {
           <label>
             <input type="checkbox" ref={this.allRefs.agreeRef} />I agree with the privacy policy
           </label>
-          <p className={styles.error}>{this.state.errors?.agree}</p>
+          <p className={styles.error}>{this.state.errors?.agreem}</p>
         </div>
 
         <button type="submit" className={styles.but}>

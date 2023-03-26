@@ -16,6 +16,6 @@ export type ErrorsCard = {
   cost?: string;
   img?: string;
   date?: string;
-  agree?: string;
   curr?: string;
+  agreem?: string;
 };
