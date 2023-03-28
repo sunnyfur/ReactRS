@@ -5,26 +5,23 @@ import styles from './card.module.scss';
 interface Props {
   card: CardType;
 }
-class Card extends React.Component<Props> {
-  render() {
-    return (
-      <div className={styles.card}>
-        <p>{this.props.card.date}</p>
-        <img className={styles.img} alt={this.props.card.name} src={this.props.card.img} />
-        <p className={styles.category}>{this.props.card.category} </p>
-        <p className={styles.name}>{this.props.card.name} </p>
-        <p className={styles.author}>{this.props.card.author} </p>
-        <p className={styles.cost}>
-          {this.props.card.cost}ETH (
-          <span className={styles.costUSD}>USDT:{this.props.card.costUSD}</span>)
-        </p>
+const Card = ({ card }: Props) => {
+  return (
+    <div className={styles.card}>
+      <p>{card.date}</p>
+      <img className={styles.img} alt={card.name} src={card.img} />
+      <p className={styles.category}>{card.category} </p>
+      <p className={styles.name}>{card.name} </p>
+      <p className={styles.author}>{card.author} </p>
+      <p className={styles.cost}>
+        {card.cost}ETH (<span className={styles.costUSD}>USDT:{card.costUSD}</span>)
+      </p>
 
-        <button type="button" className={styles.but}>
-          Live now
-        </button>
-      </div>
-    );
-  }
-}
+      <button type="button" className={styles.but}>
+        Live now
+      </button>
+    </div>
+  );
+};
 
 export default Card;
