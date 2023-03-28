@@ -1,6 +1,5 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { NavLink, useLocation } from 'react-router-dom';
-import { withRouter, WithRouterProps } from '../withRouter/withRouter';
 
 import styles from './header.module.scss';
 const Header = () => {
@@ -57,4 +56,4 @@ const Header = () => {
   );
 };
 
-export default withRouter(Header);
+export default Header;
