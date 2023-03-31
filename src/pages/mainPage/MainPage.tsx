@@ -1,10 +1,12 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import CardList from '../../components/cards/CardList';
 import Search from '../../components/search/Search';
 import cards from '../../mock/data.json';
+import { CardType } from '../../types/types';
 
 const MainPage = () => {
-  const [cardsList, seCardsList] = useState(cards);
+  const [cardsList, setCardsList] = useState<CardType[]>([]);
+  useEffect(() => setCardsList(cards), []);
   return (
     <>
       <Search />

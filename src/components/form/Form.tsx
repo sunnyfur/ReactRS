@@ -1,8 +1,6 @@
 import React from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
-import { Refs } from '../../interfaces/refs';
 import { CardType, ErrorsCard } from '../../types/types';
-import { validate } from '../../utils/validation';
 import styles from './form.module.scss';
 
 interface Props {
@@ -22,16 +20,13 @@ interface FormInput {
   agreem: boolean;
 }
 
-interface State {
-  errors: ErrorsCard;
-}
-
 const Form = ({ onSubmit }: Props) => {
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<FormInput>();
+    reset,
+  } = useForm<FormInput>({ mode: 'onBlur' });
 
   const formSubmit: SubmitHandler<FormInput> = (data) => {
     const card: CardType = {
@@ -59,6 +54,7 @@ const Form = ({ onSubmit }: Props) => {
     }
     card.date = data.date;
     card.img = URL.createObjectURL(data.img);
+    reset();
     onSubmit(card);
   };
 
@@ -66,21 +62,42 @@ const Form = ({ onSubmit }: Props) => {
     <form className={styles.form} onSubmit={handleSubmit(formSubmit)}>
       <div>
         <label className={styles.label}>
-          Name <input className={styles.input} type="text" {...register('name')} />
+          Name
+          <input
+            className={styles.input}
+            type="text"
+            {...register('name', {
+              required: 'Field name is required',
+            })}
+          />
         </label>
-        <p className={styles.error}>{errors.name?.message}</p>
+        {errors.name && <p className={styles.error}>{errors.name?.message}</p>}
       </div>
       <div>
         <label className={styles.label}>
           Date creation:
-          <input className={styles.input} type="date" {...register('date')} />
+          <input
+            className={styles.input}
+            type="date"
+            {...register('date', {
+              required: 'Date is required',
+              validate: (value) =>
+                new Date() > new Date(value) || 'Date couldn`t be over current one',
+            })}
+          />
         </label>
         <p className={styles.error}>{errors.date?.message}</p>
       </div>
       <div>
         <label className={styles.label}>
           Type NFT:
-          <select className={styles.select} {...register('category')} defaultValue="">
+          <select
+            className={styles.select}
+            {...register('category', {
+              required: 'Please choose one of the type',
+            })}
+            defaultValue=""
+          >
             <option value="" disabled></option>
             <option value="art">art</option>
             <option value="photo">photo</option>
@@ -92,7 +109,13 @@ const Form = ({ onSubmit }: Props) => {
       <div>
         <label className={styles.label}>
           Cost:
-          <input className={styles.input} type="number" {...register('cost')} />
+          <input
+            className={styles.input}
+            type="number"
+            {...register('cost', {
+              required: 'Field cost is required',
+            })}
+          />
         </label>
         <p className={styles.error}>{errors.cost?.message}</p>
       </div>
@@ -118,7 +141,13 @@ const Form = ({ onSubmit }: Props) => {
       </div>
       <div>
         <label>
-          <input type="checkbox" {...register('agreem')} />I agree with the privacy policy
+          <input
+            type="checkbox"
+            {...register('agreem', {
+              required: 'Please choose the currensy',
+            })}
+          />
+          I agree with the privacy policy
         </label>
         <p className={styles.error}>{errors.agreem?.message}</p>
       </div>
