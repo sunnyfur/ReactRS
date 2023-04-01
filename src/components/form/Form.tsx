@@ -1,23 +1,11 @@
 import React from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
-import { CardType, ErrorsCard } from '../../types/types';
+import { FormInput } from '../../interfaces/interfaces';
+import { CardType, Currency } from '../../types/types';
 import styles from './form.module.scss';
 
 interface Props {
   onSubmit: (card: CardType) => void;
-}
-enum Currency {
-  usdt = 'USDT',
-  eth = 'ETH',
-}
-interface FormInput {
-  name: string;
-  category: string;
-  cost: string;
-  img: File;
-  date: string;
-  curr: Currency;
-  agreem: boolean;
 }
 
 const Form = ({ onSubmit }: Props) => {
@@ -53,7 +41,7 @@ const Form = ({ onSubmit }: Props) => {
       card.costUSD = cost.toString();
     }
     card.date = data.date;
-    card.img = URL.createObjectURL(data.img);
+    card.img = URL.createObjectURL(data.img[0]);
     reset();
     onSubmit(card);
   };
@@ -81,7 +69,7 @@ const Form = ({ onSubmit }: Props) => {
             type="date"
             {...register('date', {
               required: 'Date is required',
-              validate: (value) =>
+              validate: (value: string) =>
                 new Date() > new Date(value) || 'Date couldn`t be over current one',
             })}
           />
@@ -114,6 +102,9 @@ const Form = ({ onSubmit }: Props) => {
             type="number"
             {...register('cost', {
               required: 'Field cost is required',
+              validate: {
+                positive: (v) => Number(v) > 0 || 'Cost should be greater than 0',
+              },
             })}
           />
         </label>
@@ -124,18 +115,37 @@ const Form = ({ onSubmit }: Props) => {
         <legend>Currency</legend>
         <label>
           USDT
-          <input type="radio" value={Currency.usdt} {...register('curr')} />
+          <input
+            type="radio"
+            value={Currency.usdt}
+            {...register('curr', {
+              required: 'Please choose one of the type',
+            })}
+          />
         </label>
         <label>
           ETH
-          <input type="radio" value={Currency.eth} {...register('curr')} />
+          <input
+            type="radio"
+            value={Currency.eth}
+            {...register('curr', {
+              required: 'Please choose the currensy',
+            })}
+          />
         </label>
         <p className={styles.error}>{errors.curr?.message}</p>
       </fieldset>
       <div>
         <label>
           Add file
-          <input className={styles.input_file} type="file" accept="image/*" {...register('img')} />
+          <input
+            className={styles.input_file}
+            type="file"
+            accept="image/*"
+            {...register('img', {
+              required: 'Please add the file',
+            })}
+          />
         </label>
         <p className={styles.error}>{errors.img?.message}</p>
       </div>
@@ -144,7 +154,7 @@ const Form = ({ onSubmit }: Props) => {
           <input
             type="checkbox"
             {...register('agreem', {
-              required: 'Please choose the currensy',
+              required: 'Please check the agreement',
             })}
           />
           I agree with the privacy policy
