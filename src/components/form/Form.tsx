@@ -59,7 +59,11 @@ const Form = ({ onSubmit }: Props) => {
             })}
           />
         </label>
-        {errors.name && <p className={styles.error}>{errors.name?.message}</p>}
+        {errors.name && (
+          <p role="alert" className={styles.error}>
+            {errors.name?.message}
+          </p>
+        )}
       </div>
       <div>
         <label className={styles.label}>
@@ -74,7 +78,11 @@ const Form = ({ onSubmit }: Props) => {
             })}
           />
         </label>
-        <p className={styles.error}>{errors.date?.message}</p>
+        {errors.date && (
+          <p role="alert" className={styles.error}>
+            {errors.date?.message}
+          </p>
+        )}
       </div>
       <div>
         <label className={styles.label}>
@@ -92,7 +100,11 @@ const Form = ({ onSubmit }: Props) => {
             <option value="3D">3D</option>
           </select>
         </label>
-        <p className={styles.error}>{errors.category?.message}</p>
+        {errors.category && (
+          <p role="alert" className={styles.error}>
+            {errors.category?.message}
+          </p>
+        )}
       </div>
       <div>
         <label className={styles.label}>
@@ -108,7 +120,11 @@ const Form = ({ onSubmit }: Props) => {
             })}
           />
         </label>
-        <p className={styles.error}>{errors.cost?.message}</p>
+        {errors.cost && (
+          <p role="alert" className={styles.error}>
+            {errors.cost?.message}
+          </p>
+        )}
       </div>
 
       <fieldset>
@@ -133,7 +149,11 @@ const Form = ({ onSubmit }: Props) => {
             })}
           />
         </label>
-        <p className={styles.error}>{errors.curr?.message}</p>
+        {errors.curr && (
+          <p role="alert" className={styles.error}>
+            {errors.curr?.message}
+          </p>
+        )}
       </fieldset>
       <div>
         <label>
@@ -147,7 +167,11 @@ const Form = ({ onSubmit }: Props) => {
             })}
           />
         </label>
-        <p className={styles.error}>{errors.img?.message}</p>
+        {errors.img && (
+          <p role="alert" className={styles.error}>
+            {errors.img?.message}
+          </p>
+        )}
       </div>
       <div>
         <label>
@@ -159,7 +183,11 @@ const Form = ({ onSubmit }: Props) => {
           />
           I agree with the privacy policy
         </label>
-        <p className={styles.error}>{errors.agreem?.message}</p>
+        {errors.agreem && (
+          <p role="alert" className={styles.error}>
+            {errors.agreem?.message}
+          </p>
+        )}
       </div>
 
       <button type="submit" className={styles.but}>
