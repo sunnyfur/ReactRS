@@ -10,12 +10,7 @@ export type CardType = {
   date?: string;
 };
 
-export type ErrorsCard = {
-  name?: string;
-  category?: string;
-  cost?: string;
-  img?: string;
-  date?: string;
-  curr?: string;
-  agreem?: string;
-};
+export enum Currency {
+  usdt = 'USDT',
+  eth = 'ETH',
+}

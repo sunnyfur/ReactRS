@@ -1,47 +1,39 @@
-import React from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import styles from './search.module.scss';
-interface Props {
-  children?: React.ReactNode;
-}
-interface State {
-  searchText: string;
-}
 
-class Search extends React.Component<Props, State> {
-  constructor(props: Props) {
-    super(props);
-    this.state = {
-      searchText: '',
-    };
-  }
-
-  componentDidMount(): void {
+const Search = () => {
+  const [searchText, setSearchText] = useState('');
+  const searchRef = useRef<string>('');
+  useEffect(() => {
     const searchString = localStorage.getItem('searchString');
-    if (searchString) this.setState({ searchText: searchString });
-  }
-  componentWillUnmount(): void {
-    localStorage.setItem('searchString', this.state.searchText);
-  }
+    if (searchString) setSearchText(searchString);
+    return () => {
+      localStorage.setItem('searchString', searchRef.current);
+    };
+  }, []);
 
-  handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    this.setState({ searchText: e.target.value });
+  useEffect(() => {
+    searchRef.current = searchText;
+  }, [searchText]);
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setSearchText(e.target.value);
   };
-  render() {
-    return (
-      <div className={styles.searchWrapper}>
-        <input
-          type="text"
-          value={this.state.searchText}
-          placeholder="Search..."
-          onChange={this.handleChange}
-          className={styles.input}
-        />
-        <button type="button" className={styles.but}>
-          Search
-        </button>
-      </div>
-    );
-  }
-}
+
+  return (
+    <div className={styles.searchWrapper}>
+      <input
+        type="text"
+        value={searchText}
+        placeholder="Search..."
+        onChange={handleChange}
+        className={styles.input}
+      />
+      <button type="button" className={styles.but}>
+        Search
+      </button>
+    </div>
+  );
+};
 
 export default Search;
