@@ -2,12 +2,15 @@ import React, { useEffect, useRef, useState } from 'react';
 import styles from './search.module.scss';
 
 type Props = {
-  searchText: string;
+  searchText?: string;
   onSubmit: (search: string) => void;
 };
 
 const Search = ({ searchText, onSubmit }: Props) => {
-  const [search, setSearch] = useState(searchText);
+  const [search, setSearch] = useState('');
+  useEffect(() => {
+    if (searchText) setSearch(searchText);
+  }, [searchText]);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearch(e.target.value);
