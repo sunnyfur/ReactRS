@@ -1,0 +1,29 @@
+@import '../../assets/styles/colors';
+@import '../../assets/styles/vars';
+@import '../../assets/styles/mixin';
+
+.card {
+  max-height: 80vh;
+  width: 60vw;
+
+  flex: 0 0 20%;
+  background-color: $card_color;
+  border-radius: $border-radius-lg;
+  display: flex;
+  gap: 2rem;
+
+  margin-bottom: 0.5rem;
+  position: relative;
+}
+
+.img {
+  grid-area: img;
+  border-radius: $border-radius-sm;
+  object-fit: cover;
+  max-height: 80vh;
+}
+.name {
+  grid-area: title;
+  font-size: 24px;
+  margin: 0;
+}

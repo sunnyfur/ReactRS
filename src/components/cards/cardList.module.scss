@@ -4,9 +4,9 @@
   gap: 2rem;
 
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(5, 1fr);
   @media screen and (max-width: $desktop) {
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(5, 1fr);
   }
   @media screen and (max-width: $tablet) {
     grid-template-columns: repeat(2, 1fr);

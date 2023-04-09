@@ -1,4 +1,5 @@
 import React, { useCallback, useState } from 'react';
+import Card from '../../components/cards/Card';
 import CardList from '../../components/cards/CardList';
 import Form from '../../components/form/Form';
 import Message from '../../components/message/Message';
@@ -23,7 +24,11 @@ const FormPage = () => {
   return (
     <section className={styles.wrapper}>
       <Form onSubmit={handleSubmit} />
-      <CardList cards={cards} />
+      <CardList>
+        {cards.map((card) => (
+          <Card key={card.id} card={card} />
+        ))}
+      </CardList>
 
       {isShowMessage && (
         <Message onClick={handleClick}>

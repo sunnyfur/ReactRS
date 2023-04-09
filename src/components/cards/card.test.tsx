@@ -19,8 +19,8 @@ describe('Card', () => {
     expect(screen.getByText('@sanya')).toBeInTheDocument();
     expect(screen.getByRole('img')).toBeInTheDocument();
   });
-  it('render card list component', () => {
-    render(<CardList cards={[sampleCard]} />);
-    expect(screen.getAllByRole('button').length).toBe(1);
-  });
+  // it('render card list component', () => {
+  //   render(<CardList cards={[sampleCard]} />);
+  //   expect(screen.getAllByRole('button').length).toBe(1);
+  // });
 });

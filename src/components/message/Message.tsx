@@ -6,19 +6,22 @@ interface Props {
   onClick: () => void;
 }
 
-class Message extends React.Component<Props> {
-  render() {
-    return (
-      <div className={styles.message}>
-        <div className={styles.messageContent}>
-          {this.props.children}
-          <button type="button" className={styles.but} onClick={this.props.onClick}>
-            Close
-          </button>
-        </div>
+const Message = (props: Props) => {
+  const handleClick = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (e.target != e.currentTarget) return;
+    props.onClick();
+  };
+
+  return (
+    <div className={styles.message} onClick={handleClick}>
+      <div className={styles.messageContent}>
+        {props.children}
+        <button type="button" className={styles.but} onClick={props.onClick}>
+          Close
+        </button>
       </div>
-    );
-  }
-}
+    </div>
+  );
+};
 
 export default Message;

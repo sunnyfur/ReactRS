@@ -17,11 +17,12 @@
   padding: 1rem;
   color: $text_color;
   min-width: 20rem;
-  max-width: 40rem;
+  max-width: 80vw;
   background-color: $card_color;
   border-radius: $border-radius-lg;
 }
 
 .but {
   @include button;
+  text-align: right;
 }
