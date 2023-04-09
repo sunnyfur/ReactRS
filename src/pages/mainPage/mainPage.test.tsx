@@ -1,5 +1,5 @@
 import MainPage from './MainPage';
-import { findByText, fireEvent, render, screen } from '@testing-library/react';
+import { fireEvent, render, screen } from '@testing-library/react';
 
 describe('test main page', () => {
   it('viewing cards', async () => {
