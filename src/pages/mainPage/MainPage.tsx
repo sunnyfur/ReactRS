@@ -1,5 +1,5 @@
-import { useEffect, useLayoutEffect, useRef, useState } from 'react';
-import { getAnime, getAnimes, getFullAnime } from '../../api/api';
+import { useEffect, useState } from 'react';
+import { getAnime, getAnimes } from '../../api/api';
 import CardFull from '../../components/card/CardFull';
 
 import CardAnime from '../../components/cards/CardAnime';
