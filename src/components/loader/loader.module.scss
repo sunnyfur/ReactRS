@@ -1,0 +1,7 @@
+@import '../../assets/styles/colors';
+.loader {
+  font-size: 32px;
+  background: $gr_color;
+  -webkit-background-clip: text;
+  color: transparent;
+}

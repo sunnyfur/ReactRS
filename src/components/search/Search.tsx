@@ -1,38 +1,39 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { FormEvent, useEffect, useState } from 'react';
 import styles from './search.module.scss';
 
-const Search = () => {
-  const [searchText, setSearchText] = useState('');
-  const searchRef = useRef<string>('');
-  useEffect(() => {
-    const searchString = localStorage.getItem('searchString');
-    if (searchString) setSearchText(searchString);
-    return () => {
-      localStorage.setItem('searchString', searchRef.current);
-    };
-  }, []);
+type Props = {
+  searchText?: string;
+  onSubmit: (search: string) => void;
+};
 
+const Search = ({ searchText, onSubmit }: Props) => {
+  const [search, setSearch] = useState('');
   useEffect(() => {
-    searchRef.current = searchText;
+    if (searchText) setSearch(searchText);
   }, [searchText]);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setSearchText(e.target.value);
+    setSearch(e.target.value);
+  };
+
+  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    onSubmit(search);
   };
 
   return (
-    <div className={styles.searchWrapper}>
+    <form className={styles.searchWrapper} onSubmit={handleSubmit}>
       <input
         type="text"
-        value={searchText}
+        value={search}
         placeholder="Search..."
         onChange={handleChange}
         className={styles.input}
       />
-      <button type="button" className={styles.but}>
+      <button type="submit" className={styles.but}>
         Search
       </button>
-    </div>
+    </form>
   );
 };
 

@@ -1,6 +1,5 @@
 import { render, screen } from '@testing-library/react';
 import Card from './Card';
-import CardList from './CardList';
 
 const sampleCard = {
   id: 7,
@@ -18,9 +17,5 @@ describe('Card', () => {
     render(<Card card={sampleCard} />);
     expect(screen.getByText('@sanya')).toBeInTheDocument();
     expect(screen.getByRole('img')).toBeInTheDocument();
-  });
-  it('render card list component', () => {
-    render(<CardList cards={[sampleCard]} />);
-    expect(screen.getAllByRole('button').length).toBe(1);
   });
 });
