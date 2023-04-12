@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { FormEvent, useEffect, useState } from 'react';
 import styles from './search.module.scss';
 
 type Props = {
@@ -16,7 +16,8 @@ const Search = ({ searchText, onSubmit }: Props) => {
     setSearch(e.target.value);
   };
 
-  const handleSubmit = () => {
+  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
     onSubmit(search);
   };
 
