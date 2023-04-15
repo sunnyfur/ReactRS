@@ -1,12 +1,12 @@
 import { configureStore } from '@reduxjs/toolkit';
 import { combineReducers } from 'redux';
-import animeReducer from './reducers/animeSlice';
+import searchReducer from './reducers/searchSlice';
 import formReducer from './reducers/formSlice';
 import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux';
 import { animeApi } from '../api/api';
 
 const rootReducer = combineReducers({
-  anime: animeReducer,
+  search: searchReducer,
   [animeApi.reducerPath]: animeApi.reducer,
   form: formReducer,
 });

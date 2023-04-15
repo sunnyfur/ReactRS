@@ -8,16 +8,16 @@ import Message from '../../components/message/Message';
 import Search from '../../components/search/Search';
 
 import { useAppDispatch, useAppSelector } from '../../store/store';
-import { animeActions } from '../../store/reducers/animeSlice';
+import { searchActions } from '../../store/reducers/searchSlice';
 
 const MainPage = () => {
-  const { searchText } = useAppSelector((state) => state.anime);
+  const { searchText } = useAppSelector((state) => state.search);
   const { data: cardsList, isLoading, isError } = useGetAnimesQuery(searchText);
   const [currentId, setCurrentId] = useState<number | null>(null);
 
   const dispatch = useAppDispatch();
   const handleSubmit = (search: string) => {
-    dispatch(animeActions.setSearch(search));
+    dispatch(searchActions.setSearch(search));
   };
   const handleClick = (id: number) => {
     setCurrentId(id);
