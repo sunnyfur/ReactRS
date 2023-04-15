@@ -9,6 +9,9 @@ export type CardType = {
   img: string;
   date?: string;
 };
+export type ResponseAnime = {
+  data: CardTypeAnime[];
+};
 export type CardTypeAnime = {
   mal_id: number;
   title: string;

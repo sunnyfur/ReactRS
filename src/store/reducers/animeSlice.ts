@@ -1,4 +1,4 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 import { CardTypeAnime } from './../../types/types';
 
 interface InitialState {
@@ -16,8 +16,13 @@ const initialState: InitialState = {
 export const animeSlice = createSlice({
   name: 'animes',
   initialState,
-  reducers: {},
+  reducers: {
+    setSearch: (state, action: PayloadAction<string>) => {
+      state.searchText = action.payload;
+    },
+  },
 });
 
+export const animeActions = animeSlice.actions;
 const animeReducer = animeSlice.reducer;
 export default animeReducer;
