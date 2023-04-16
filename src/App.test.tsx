@@ -1,6 +1,5 @@
 import { screen } from '@testing-library/react';
 import App from './App';
-import { BrowserRouter } from 'react-router-dom';
 import { renderWithProviders } from './utils/test-utils';
 
 test('renders App', () => {

@@ -21,7 +21,7 @@ export const animeApi = createApi({
     }),
     getFullAnime: builder.query<CardTypeAnimeFull, number>({
       query: (id) => `anime/${id}/full`,
-      transformResponse: (response: { data: CardTypeAnimeFull }, meta, arg) => response.data,
+      transformResponse: (response: { data: CardTypeAnimeFull }) => response.data,
     }),
   }),
 });
