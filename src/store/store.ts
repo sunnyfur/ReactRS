@@ -1,5 +1,5 @@
 import { configureStore } from '@reduxjs/toolkit';
-import { combineReducers } from 'redux';
+import { PreloadedState, combineReducers } from 'redux';
 import searchReducer from './reducers/searchSlice';
 import formReducer from './reducers/formSlice';
 import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux';
@@ -11,12 +11,15 @@ const rootReducer = combineReducers({
   form: formReducer,
 });
 
-export const store = configureStore({
-  reducer: rootReducer,
-  middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(animeApi.middleware),
-});
-export type RootState = ReturnType<typeof store.getState>;
-export type AppDispatch = typeof store.dispatch;
+export const store = (preloadedState?: PreloadedState<RootState>) =>
+  configureStore({
+    reducer: rootReducer,
+    preloadedState,
+    middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(animeApi.middleware),
+  });
+export type RootState = ReturnType<typeof rootReducer>;
+export type AppStore = ReturnType<typeof store>;
+export type AppDispatch = AppStore['dispatch'];
 export type GetRootState = () => RootState;
 export const useAppDispatch: () => AppDispatch = useDispatch;
 export const useAppSelector: TypedUseSelectorHook<RootState> = useSelector;
