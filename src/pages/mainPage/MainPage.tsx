@@ -1,51 +1,23 @@
-import { useEffect, useState } from 'react';
-import { getAnime, getAnimes } from '../../api/api';
+import { useState } from 'react';
+import { useGetAnimesQuery } from '../../api/api';
 import CardFull from '../../components/card/CardFull';
-
 import CardAnime from '../../components/cards/CardAnime';
 import CardList from '../../components/cards/CardList';
 import Loader from '../../components/loader/Loader';
 import Message from '../../components/message/Message';
 import Search from '../../components/search/Search';
 
-import { CardTypeAnime } from '../../types/types';
+import { useAppDispatch, useAppSelector } from '../../store/store';
+import { searchActions } from '../../store/reducers/searchSlice';
 
 const MainPage = () => {
-  const [cardsList, setCardsList] = useState<CardTypeAnime[]>([]);
-  const [searchText, setSearchText] = useState<string>(localStorage.getItem('searchString') || '');
-  const [isLoading, setIsLoading] = useState(true);
+  const { searchText } = useAppSelector((state) => state.search);
+  const { data: cardsList, isLoading, isError } = useGetAnimesQuery(searchText);
   const [currentId, setCurrentId] = useState<number | null>(null);
 
-  useEffect(() => {
-    const controller = new AbortController();
-
-    setIsLoading(true);
-    const fetching = async () => {
-      let data;
-      if (searchText) {
-        data = await getAnime(searchText, controller);
-      } else {
-        data = await getAnimes(controller);
-      }
-      if (data) {
-        setCardsList(data);
-      }
-      setIsLoading(false);
-    };
-    try {
-      fetching();
-    } catch (error) {
-      console.error(error);
-    }
-
-    return () => {
-      controller.abort();
-    };
-  }, [searchText]);
-
+  const dispatch = useAppDispatch();
   const handleSubmit = (search: string) => {
-    setSearchText(search);
-    localStorage.setItem('searchString', search);
+    dispatch(searchActions.setSearch(search));
   };
   const handleClick = (id: number) => {
     setCurrentId(id);
@@ -63,7 +35,7 @@ const MainPage = () => {
           ))}
         </CardList>
       )}
-      {!isLoading && !cardsList.length && <>no data to display</>}
+      {(isError || (!isLoading && !cardsList?.length)) && <>no data to display</>}
       {isLoading && <Loader />}
       {currentId && (
         <Message onClick={handleClose}>

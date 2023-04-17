@@ -1,33 +1,29 @@
-export const getAnimes = async (controller: AbortController) => {
-  try {
-    const data = await fetch('https://api.jikan.moe/v4/top/anime', { signal: controller.signal })
-      .then((res) => res.json())
-      .then((res) => res.data);
-    return data;
-  } catch (err) {
-    if ((<Error>err).name != 'AbortError') throw err;
-  }
-};
-export const getAnime = async (searchText: string, controller: AbortController) => {
-  try {
-    const data = await fetch(`https://api.jikan.moe/v4/anime?letter=${searchText}`, {
-      signal: controller.signal,
-    })
-      .then((res) => res.json())
-      .then((res) => res.data);
-    return data;
-  } catch (err) {
-    if ((<Error>err).name != 'AbortError') throw err;
-  }
-};
+import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
+import { CardTypeAnime, CardTypeAnimeFull, ResponseAnime } from '../types/types';
 
-export const getFullAnime = async (id: number) => {
-  try {
-    const data = await fetch(`https://api.jikan.moe/v4/anime/${id}/full`)
-      .then((res) => res.json())
-      .then((res) => res.data);
-    return data;
-  } catch (err) {
-    if ((<Error>err).name != 'AbortError') throw err;
-  }
-};
+export const animeApi = createApi({
+  reducerPath: 'animeApi',
+  baseQuery: fetchBaseQuery({ baseUrl: 'https://api.jikan.moe/v4' }),
+  endpoints: (builder) => ({
+    getAnimes: builder.query<CardTypeAnime[], string>({
+      async queryFn(_arg, _queryApi, _extraOptions, fetchWithBQ) {
+        if (_arg) {
+          const result = await fetchWithBQ(`anime?letter=${_arg}`);
+          const data = result.data as ResponseAnime;
+
+          return { data: data.data as CardTypeAnime[] };
+        } else {
+          const result = await fetchWithBQ(`top/anime`);
+          const data = result.data as ResponseAnime;
+          return { data: data.data as CardTypeAnime[] };
+        }
+      },
+    }),
+    getFullAnime: builder.query<CardTypeAnimeFull, number>({
+      query: (id) => `anime/${id}/full`,
+      transformResponse: (response: { data: CardTypeAnimeFull }) => response.data,
+    }),
+  }),
+});
+
+export const { useGetAnimesQuery, useGetFullAnimeQuery } = animeApi;

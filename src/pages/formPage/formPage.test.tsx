@@ -1,15 +1,16 @@
-import { fireEvent, render, screen, waitFor } from '@testing-library/react';
+import { fireEvent, screen, waitFor } from '@testing-library/react';
 import Form from '../../components/form/Form';
 import FormPage from './FormPage';
 import { vi } from 'vitest';
 import { CardType } from '../../types/types';
+import { renderWithProviders } from '../../utils/test-utils';
 
 const mockAdd = vi.fn((data: CardType) => Promise.resolve({ data }));
 window.URL.createObjectURL = vi.fn();
 
 describe('form page testing', () => {
   it('form is viewing', () => {
-    render(<FormPage />);
+    renderWithProviders(<FormPage />);
     expect(screen.getByRole('textbox', { name: /name/i })).toBeInTheDocument();
     expect(screen.getByRole('combobox', { name: /nft/i })).toBeInTheDocument();
     expect(screen.getByRole('option', { name: /art/i })).toBeInTheDocument();
@@ -19,13 +20,13 @@ describe('form page testing', () => {
     expect(screen.getByRole('checkbox', { name: /agree/i })).toBeInTheDocument();
   });
   it('validation all fialds ', async () => {
-    render(<Form onSubmit={mockAdd} />);
+    renderWithProviders(<Form onSubmit={mockAdd} />);
     fireEvent.submit(screen.getByRole('button'));
     expect(await screen.findAllByRole('alert')).toHaveLength(7);
     expect(mockAdd).not.toBeCalled();
   });
   it('all fields is valid', async () => {
-    render(<Form onSubmit={mockAdd} />);
+    renderWithProviders(<Form onSubmit={mockAdd} />);
     const file = new File(['test'], 'test.png', { type: 'image/png' });
     fireEvent.input(screen.getByRole('textbox', { name: /name/i }), {
       target: {

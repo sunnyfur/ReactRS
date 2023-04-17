@@ -5,13 +5,16 @@ import Form from '../../components/form/Form';
 import Message from '../../components/message/Message';
 import { CardType } from '../../types/types';
 import styles from './formPage.module.scss';
+import { useAppDispatch, useAppSelector } from '../../store/store';
+import { formActions } from '../../store/reducers/formSlice';
 
 const FormPage = () => {
-  const [cards, setCards] = useState<CardType[]>([]);
+  const { cards } = useAppSelector((state) => state.form);
+  const dispatch = useAppDispatch();
   const [isShowMessage, setIsShowMessage] = useState(false);
 
   const handleSubmit = (card: CardType) => {
-    setCards((prevState) => [...prevState, card]);
+    dispatch(formActions.addCard(card));
     setIsShowMessage(true);
     setTimeout(() => {
       setIsShowMessage(false);

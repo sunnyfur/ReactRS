@@ -1,9 +1,9 @@
-import { render, screen } from '@testing-library/react';
+import { screen } from '@testing-library/react';
 import App from './App';
-import { BrowserRouter } from 'react-router-dom';
+import { renderWithProviders } from './utils/test-utils';
 
 test('renders App', () => {
-  render(<App />, { wrapper: BrowserRouter });
+  renderWithProviders(<App />);
   const linkElement = screen.getByText(/about/i);
   expect(linkElement).toBeInTheDocument();
 });
