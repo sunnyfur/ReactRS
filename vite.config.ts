@@ -1,9 +1,15 @@
 /// <reference types="vitest" />
 import { defineConfig, configDefaults } from 'vitest/config';
-import react from '@vitejs/plugin-react';
 
 export default defineConfig({
-  plugins: [react()],
+  // plugins: [react()],
+  ssr: { target: 'node' },
+  esbuild: { jsx: 'automatic' },
+
+  build: {
+    minify: false,
+  },
+
   test: {
     globals: true,
     environment: 'jsdom',
