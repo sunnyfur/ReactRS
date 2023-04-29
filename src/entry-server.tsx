@@ -3,14 +3,24 @@ import { StaticRouter } from 'react-router-dom/server';
 import App from './App';
 import { Provider } from 'react-redux';
 import { store } from './store/store';
+import Html from './components/html/Html';
 
-export function render(url: string | Partial<Location>, options: RenderToPipeableStreamOptions) {
+const storeCurr = store({});
+
+export const render = async (
+  url: string | Partial<Location>,
+  style: string,
+  options: RenderToPipeableStreamOptions
+) => {
+  const preloadedState = storeCurr.getState();
   return renderToPipeableStream(
-    <StaticRouter location={url}>
-      <Provider store={store()}>
-        <App />
+    <Html style={style} preloadedState={preloadedState}>
+      <Provider store={storeCurr}>
+        <StaticRouter location={url}>
+          <App />
+        </StaticRouter>
       </Provider>
-    </StaticRouter>,
+    </Html>,
     options
   );
-}
+};

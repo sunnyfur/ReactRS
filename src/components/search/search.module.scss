@@ -32,7 +32,7 @@
   min-height: 2rem;
   border: 1px solid $border_color;
   border-radius: 8px;
-  background: $card_color url('/public/search_icon.svg') no-repeat 98%;
+  background: $card_color url('/search_icon.svg') no-repeat 98%;
   color: $text_color;
   padding: 0px 2rem 0 1rem;
   &::placeholder {

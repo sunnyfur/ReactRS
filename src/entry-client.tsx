@@ -1,18 +1,26 @@
 import React from 'react';
-import ReactDOM from 'react-dom/client';
-import { BrowserRouter } from 'react-router-dom';
 import App from './App';
+// import './index.css';
+import { hydrate } from 'react-dom';
 import { Provider } from 'react-redux';
-import { store } from './store/store';
-import './index.css';
+import { PreloadedState } from 'redux';
+import { RootState, store } from './store/store';
+import { BrowserRouter } from 'react-router-dom';
 
-ReactDOM.hydrateRoot(
-  document.getElementById('root') as HTMLElement,
-  // <React.StrictMode>
-  <BrowserRouter>
-    <Provider store={store()}>
+declare global {
+  interface Window {
+    __PRELOADED_STATE__?: PreloadedState<RootState>;
+  }
+}
+
+console.log({ preloadedState: window.__PRELOADED_STATE__ });
+const storeCurr = store(window.__PRELOADED_STATE__);
+delete window.__PRELOADED_STATE__;
+hydrate(
+  <Provider store={storeCurr}>
+    <BrowserRouter>
       <App />
-    </Provider>
-  </BrowserRouter>
-  // </React.StrictMode>
+    </BrowserRouter>
+  </Provider>,
+  document.getElementById('root')
 );
