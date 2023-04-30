@@ -13,7 +13,6 @@ declare global {
   }
 }
 
-console.log({ preloadedState: window.__PRELOADED_STATE__ });
 const storeCurr = store(window.__PRELOADED_STATE__);
 delete window.__PRELOADED_STATE__;
 hydrate(

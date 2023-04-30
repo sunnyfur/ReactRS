@@ -11,7 +11,7 @@ const CardAnime = ({ card, onClick }: Props) => {
     onClick(card.mal_id);
   };
   return (
-    <div className={styles.card} onClick={handleClick}>
+    <div className={styles.card} onClick={handleClick} data-test-id="card">
       <img className={styles.img} alt={card.title_english} src={card.images.webp.image_url} />
       <p className={styles.score} style={{ backgroundColor: getColor(card.score) }}>
         {card.score}
