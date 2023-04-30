@@ -1,15 +1,7 @@
-import fs from 'fs';
-import path from 'path';
-import { fileURLToPath } from 'url';
 import express from 'express';
 import { createServer as createViteServer } from 'vite';
-// import render from './src/entry-server';
-
-const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 async function createServer() {
-  const html = fs.readFileSync(path.resolve(__dirname, './index.html')).toString();
-  const parts = html.split('<!--ssr-outlet-->');
   const app = express();
 
   const vite = await createViteServer({
@@ -18,26 +10,24 @@ async function createServer() {
   });
 
   app.use(vite.middlewares);
-  // app.use('/assets', express.static(path.resolve(__dirname, './src/assets')));
 
+  const scripts = './src/entry-client.tsx';
+  const style = './src/index.css';
   app.use('*', async (req, res) => {
     const { render } = await vite.ssrLoadModule('./src/entry-server.tsx');
-    res.write(parts[0]);
-    const { pipe } = await render(req.url, {
+
+    const { pipe } = await render(req.originalUrl, style, {
       onShellReady() {
         pipe(res);
       },
       onShellError() {
-        // do error handling
-      },
-      onAllReady() {
-        // last thing to write
-        res.write(parts[1]);
-        res.end();
+        res.statusCode = 500;
+        res.send('<!doctype html><p>Error on server</p>');
       },
       onError(err) {
         console.error(err);
       },
+      bootstrapModules: [scripts],
     });
   });
 
