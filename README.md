@@ -21,3 +21,7 @@ For linting application
 ### npm run test
 
 For testing application
+
+### npm run test:e2e
+
+For e2e tests

@@ -16,7 +16,7 @@ const CardFull = ({ id }: Props) => {
         </div>
       )}
       {card && (
-        <div className={styles.card}>
+        <div className={styles.card} data-test-id="cardFull">
           <img className={styles.img} alt={card.title} src={card.images.webp.large_image_url} />
           <div>
             <h2>{card.title} </h2>

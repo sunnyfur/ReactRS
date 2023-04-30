@@ -14,8 +14,16 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "noEmit": true,
+    "types": ["cypress", "node"],
     "jsx": "react-jsx"
   },
+  "ts-node": {
+    "esm": true,
+    "transpileOnly": true,
+    "experimentalSpecifierResolution": "node"
+  },
+
   "include": ["src"],
+  "exclude": ["cypress"],
   "references": [{ "path": "./tsconfig.node.json" }]
 }

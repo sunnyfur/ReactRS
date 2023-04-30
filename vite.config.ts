@@ -1,9 +1,24 @@
 /// <reference types="vitest" />
+/// <reference types="vite/client" />
+/// <reference types="cypress" />
 import { defineConfig, configDefaults } from 'vitest/config';
-import react from '@vitejs/plugin-react';
+import istanbul from 'vite-plugin-istanbul';
 
 export default defineConfig({
-  plugins: [react()],
+  plugins: [
+    istanbul({
+      cypress: true,
+      include: 'src/*',
+      requireEnv: false,
+    }),
+  ],
+  ssr: { target: 'node' },
+  esbuild: { jsx: 'automatic' },
+
+  build: {
+    sourcemap: true,
+  },
+
   test: {
     globals: true,
     environment: 'jsdom',
@@ -13,7 +28,7 @@ export default defineConfig({
       all: true,
       skipFull: false,
       reporter: 'text',
-      exclude: [...configDefaults.exclude, 'src/main.tsx', 'vite-env.d.ts'],
+      exclude: [...configDefaults.exclude, 'vite-env.d.ts'],
     },
   },
 });
